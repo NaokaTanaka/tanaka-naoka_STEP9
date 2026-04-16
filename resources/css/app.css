@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Meiryo, sans-serif;
+  font-weight: bold;
+  background-color: #ffffff;
+  color: #333;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+/* ヘッダー */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0px 50px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+li {
+  padding: 0px 10px;
+}
+
+.nav-item:not(:nth-child(3)) {
+  color: #0000ff;
+}
+
+.container {
+  padding: 50px;
+}
+
+h1 {
+  font-size: 30px;
+  padding: 30px 0px;
+}
+
+h3 {
+  font-size: 20px;
+  padding: 30px;
+}
+
+.search-box {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 50px;
+}
+
+.name-input {
+  border-radius: 5px;
+  border: 1px solid #c0c0c0;
+  width: 400px;
+}
+
+.price-input {
+  border-radius: 5px;
+  border: 1px solid #c0c0c0;
+  width: 200px;
+}
+
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #c0c0c0;
+  width: 100%;
+}
+
+.quantity {
+  border-radius: 5px;
+  border: 1px solid #c0c0c0;
+  width: 100px;
+}
+
+table {
+  margin-left: 50px;
+  table-layout: fixed;
+  width: 100%;
+  margin-top: 50px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #c0c0c0;
+  width: 250px;
+}
+
+.detail_container {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.detail_container p {
+  width: 80%;
+}
+
+/* 画像 */
+.product_img {
+  height: 50px;
+}
+
+.detail_img {
+  height: 300px;
+}
+
+.img-control {
+  display: flex;
+  align-items: center;
+}
+.item_img {
+  height: 200px;
+}
+
+/* ボタン */
+.btn-search, .btn-primary, .btn-update, .btn-update, .btn-sales {
+  text-decoration: none;
+  background-color: #0000ff;
+  color: #ffffff;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.btn-registration {
+  text-decoration: none;
+  background-color: #0000ff;
+  color: #ffffff;
+  padding: 7px;
+  border-radius: 5px;
+  margin-left: 1200px;
+}
+
+.btn-detail {
+  text-decoration: none;
+  background-color: #008040;
+  color: #ffffff;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.btn-outline-danger, .btn-delete
+{
+  text-decoration: none;
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.btn-back {
+  text-decoration: none;
+  background-color: #808080;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.like-btn {
+  padding-left: 10px;
+}
+
+.like-btn.liked {
+  color: red;
+}
+
+/* 詳細画面ボタン */
+.detail-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* マイページ */
+.mypage-user {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1500px;
+  padding-top: 20px;
+}
+
+.mypage-user-item {
+  width: 50%;
+}
+
+/* フッター */
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #fff;
+}
+
+.contact {
+  text-decoration: none;
+  background-color: #0000ff;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+footer a {
+  display: inline-block;
+  margin: 5px 10px;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  color: #0000ff;
+  gap: 20px;
+  margin: 10px 0;
+}
+
+footer p {
+  color: #808080;
+  margin: 10px;
+}
