@@ -9,9 +9,9 @@
   <form action="{{ route('search') }}" method="GET" class="my-3">
     <div class="search-box">
       <input type="text" name="product_name" class="name-input" placeholder="商品名を入力">
-      <input type="text" name="price_min" class="price-input" placeholder="最低価格">
+      <input type="number" name="price_min" class="price-input" placeholder="最低価格">
       <span class="price-span">～</span>
-      <input type="text" name="price_max" class="price-input" placeholder="最高価格">
+      <input type="number" name="price_max" class="price-input" placeholder="最高価格">
       <button type="submit" class="btn-search">検索</button>
     </div>
   </form>

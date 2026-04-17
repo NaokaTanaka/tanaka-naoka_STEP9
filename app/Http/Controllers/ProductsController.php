@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductsController extends Controller
 {
@@ -72,22 +74,17 @@ class ProductsController extends Controller
     }
 
     // 投稿データを保存
-    public function products(Request $request)
+    public function products(ProductRequest $request)
     {
-        $data = [
-            'product_name' => $request->product_name,
-            'price' => $request->price,
-            'description' => $request->description,
-            'stock' => $request->stock,
-            'user_id' => Auth::id(),
-            'company_id' => Auth::user()->company_id,
-        ];
+        $data = $request->validated();
 
-    // 画像処理
-    if ($request->hasFile('img_path')) {
-        $path = $request->file('img_path')->store('images', 'public');
-        $data['img_path'] = $path;
-    }
+        $data['user_id'] = Auth::id();
+        $data['company_id'] = Auth::user()->company_id;
+
+        // 画像処理
+        if ($request->hasFile('img_path')) {
+            $data['img_path'] = $request->file('img_path')->store('images', 'public');
+        }
 
         // リダイレクト
         Product::create($data);
@@ -102,21 +99,9 @@ class ProductsController extends Controller
     }
 
     // 更新処理
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
-        $request->validate([
-            'product_name' => 'required|max:255',
-            'price' => 'required',
-            'description' => 'required',
-            'stock' => 'required',
-            'img_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
         $product = Product::findOrFail($id);
-        $product->product_name = $request->input('product_name');
-        $product->price = $request->input('price');
-        $product->description = $request->input('description');
-        $product->stock = $request->input('stock');
 
         // 画像がアップロードされた場合
         if($request->hasFile('img_path')) {
@@ -127,10 +112,13 @@ class ProductsController extends Controller
 
             // 画像を保存
             $path = $request->file('img_path')->store('images', 'public');
-            $product->img_path = $path;
-        }
+            $data = $request->validated();
+            $data['img_path'] = $path;
 
-        $product->save();
+            $product->update($data);
+        } else {
+            $product->update($request->validated());
+        }
 
         return redirect()->route('detail_item', $id)->with('success', '商品が更新されました');
     }
