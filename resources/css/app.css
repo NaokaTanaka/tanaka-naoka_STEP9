@@ -171,6 +171,7 @@ th, td {
 
 .like-btn {
   padding-left: 10px;
+  color: black;
 }
 
 .like-btn.liked {
@@ -194,6 +195,30 @@ th, td {
 
 .mypage-user-item {
   width: 50%;
+}
+
+
+/* モータル */
+dialog {
+  height: 200px;
+  width: 500px;
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.btn-dialog {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.closeDialog {
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 5px;
 }
 
 /* フッター */

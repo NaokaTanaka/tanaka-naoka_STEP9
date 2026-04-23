@@ -23,13 +23,13 @@
         <input type="text" name="product_name" id="product_name" class="form-control" value="{{ old('product_name', $product->product_name) }}">
 
         <label for="price">価格</label>
-        <input type="number" name="price" id="price" class="form-control" value="{{ old('price', $product->price) }}">
+        <input type="text" name="price" id="price" class="form-control" value="{{ old('price', $product->price) }}">
 
         <label for="description">商品説明</label>
         <textarea name="description" id="description" class="form-control">{{ old('description', $product->description) }}</textarea>
 
         <label for="stock">在庫数</label>
-        <input type="number" name="stock" id="stock" class="form-control" value="{{ old('stock', $product->stock) }}">
+        <input type="text" name="stock" id="stock" class="form-control" value="{{ old('stock', $product->stock) }}">
 
         <div class="img-control">
           <label for="img_path">商品画像</label>
@@ -40,7 +40,7 @@
         </div>
 
       <div class="mt-3">
-        <a href="{{ route('detail_item', $product->id) }}" class="btn-back">戻る</a>
+        <a href="{{ route('detail.item', $product->id) }}" class="btn-back">戻る</a>
         <button type="submit" class="btn-update">更新</button>
       </div>
     </form>

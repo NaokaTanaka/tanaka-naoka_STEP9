@@ -32,11 +32,11 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'name_kanji' => ['required', 'string', 'max:255'],
-            'name_kana' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z0-9]+$/'],
+            'name_kanji' => ['required', 'string', 'max:255', 'regex:/^[ぁ-んァ-ヶ一-龥ー]+$/u'],
+            'name_kana' => ['required', 'string', 'max:255', 'regex:/^[ァ-ヶー]+$/u'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', 'regex:/^[\x21-\x7E]+$/', Rules\Password::defaults()],
             'company_name' => ['required', 'string', 'max:255'],
         ]);
 
