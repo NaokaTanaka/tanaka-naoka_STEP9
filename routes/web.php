@@ -32,7 +32,7 @@ Route::get('/registration', [ProductsController::class, 'registration'])->name('
 Route::post('/products', [ProductsController::class, 'products'])->name('products');
 
 // 詳細画面
-Route::get('/products/{id}', [ProductsController::class, 'show'])->name('detail_products');
+Route::get('/products/{id}', [ProductsController::class, 'show'])->name('detail.products');
 
 // いいね追加
 Route::post('/products/{product}/like', [LikeController::class, 'likeProduct'])->middleware('auth');
@@ -41,18 +41,18 @@ Route::post('/products/{product}/like', [LikeController::class, 'likeProduct'])-
 Route::delete('/products/{product}/like', [LikeController::class, 'unlikeProduct'])->middleware('auth');
 
 // 出品商品詳細画面
-Route::get('/mypage/products/{id}', [ProductsController::class, 'showMyItem'])->name('detail_item');
+Route::get('/mypage/products/{id}', [ProductsController::class, 'showMyItem'])->name('detail.item');
 
 // 商品削除
-Route::delete('/products/{id}', [ProductsController::class, 'destroy'])->name('destroy');
+Route::delete('/products/{id}', [ProductsController::class, 'destroy'])->name('destroy.products');
 
 // 購入画面
-Route::get('/products/{product}/purchase',[SalesController::class, 'show'])->name('product.purchase.form');
+Route::get('/products/{product}/purchase',[SalesController::class, 'showSales'])->name('product.purchase.form');
 // 購入処理
 Route::post('/products/{product}/purchase', [SalesController::class, 'purchase'])->name('product.purchase');
 
 // 更新画面表示
-Route::get('/products/{id}/edit', [ProductsController::class, 'edit'])->name('item');
+Route::get('/products/{id}/edit', [ProductsController::class, 'edit'])->name('item.edit');
 // 更新処理
 Route::put('/products/{id}', [ProductsController::class, 'update'])->name('item.update');
 

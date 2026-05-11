@@ -40,7 +40,7 @@ class ProductsController extends Controller
             $query->where('price', '<=', $request->price_max);
         }
 
-        $products = $query->get();
+        $products = $query->orderBy('id')->get();
         return view('products', compact('products'));
     }
 
@@ -49,8 +49,8 @@ class ProductsController extends Controller
     {
         // ログインユーザIDを取得
         $user_id = Auth::id();
-        $products = Product::where('user_id', $user_id)->get();
-        $sales = Sale::with('product')->where('user_id', $user_id)->get();
+        $products = Product::where('user_id', $user_id)->orderBy('id')->get();
+        $sales = Sale::where('user_id', $user_id)->orderBy('created_at')->get();
         return view('mypage', compact('products', 'sales'));
     }
 
@@ -120,7 +120,7 @@ class ProductsController extends Controller
             $product->update($request->validated());
         }
 
-        return redirect()->route('detail_item', $id)->with('success', '商品が更新されました');
+        return redirect()->route('detail.item', $id)->with('success', '商品が更新されました');
     }
 
     // 削除

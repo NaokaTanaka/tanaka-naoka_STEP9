@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Product;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,11 @@ class Sale extends Model
         'product_id',
         'quantity',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 
     public function product()
     {

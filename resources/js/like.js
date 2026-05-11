@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     likeBtn.addEventListener('click', function () {
       const productId = this.getAttribute('data-product-id');
       const url = `/products/${productId}/like`;
-      const method = this.querySelector('i').style.color === 'red' ? 'DELETE' : 'POST';
+      const isLiked = this.classList.contains('liked');
+      const method = isLiked ? 'DELETE' : 'POST';
 
       fetch(url, {
         method: method,
@@ -15,10 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       })
 
-      .then(response => response.json())
-      .then(url => {
-        const heartIcon = this.querySelector('i');
-        heartIcon.style.color = method === 'POST' ? 'red' : 'black';
+      .then(data => {
+        this.classList.toggle('liked', method === 'POST');
       });
     });
   }

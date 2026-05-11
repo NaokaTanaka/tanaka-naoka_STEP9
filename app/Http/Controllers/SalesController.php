@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\Sale;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
-    public function show(Product $product)
+    public function showSales($product)
     {
+        $product = Product::with('company')->findOrFail($product);
         return view('purchase', compact('product'));
     }
 
-    public function purchase(Request $request, Product $product)
+    public function purchase(Request $request, $product)
     {
-
+        $product = Product::findOrFail($product);
         $quantity = $request->input('quantity', 1);
 
         if ($product->stock < $quantity) {
@@ -27,7 +28,7 @@ class SalesController extends Controller
         DB::beginTransaction();
 
         try {
-            $sale = Sale::create([
+            Sale::create([
                 'user_id' => Auth::id(),
                 'product_id' => $product->id,
                 'quantity' => $quantity

@@ -28,12 +28,6 @@ class Product extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function sales()
-    {
-        return $this->hasMany(Sale::class);
-    }
-
-    /* いいねボタン */
     public function likes()
     {
         return $this->hasMany(Like::class);
@@ -44,5 +38,4 @@ class Product extends Model
     {
         return $this->likes()->where('user_id', $user->id)->exists();
     }
-
 }

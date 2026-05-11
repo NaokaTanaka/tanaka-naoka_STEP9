@@ -43,7 +43,7 @@
           </td>
           <td>{{ $product->price }}</td>
           <td>
-            <a href="{{ route('detail_products', $product->id) }}" class="btn-detail">詳細</a>
+            <a href="{{ route('detail.products', $product->id) }}" class="btn-detail">詳細</a>
           </td>
         </tr>
         @empty

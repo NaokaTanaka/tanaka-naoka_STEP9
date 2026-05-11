@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
-    public function likeProduct(Request $request, Product $product)
+    public function likeProduct(Product $product)
     {
         $user = Auth::user();
 
@@ -19,13 +19,9 @@ class LikeController extends Controller
                 'user_id' => $user->id,
             ]);
         }
-
-        return response()->json([
-            'likes_count' => $product->likes()->count(),
-        ]);
     }
 
-    public function unlikeProduct(Request $request, Product $product)
+    public function unlikeProduct(Product $product)
     {
         $user = Auth::user();
 
@@ -34,9 +30,5 @@ class LikeController extends Controller
                 ->where('user_id', $user->id)
                 ->delete();
         }
-
-        return response()->json([
-            'likes_count' => $product->likes()->count(),
-        ]);
     }
 }

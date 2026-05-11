@@ -6,7 +6,7 @@
 <div class="container">
   <h1>出品商品詳細</h1>
 
-  @forelse($products as $product)
+  @foreach($products as $product)
       <p class="detail_container">商品名：{{ $product->product_name }}</p>
       <p class="detail_container">説明：{{ $product->description }}</p>
       <p class="detail_container">画像：
@@ -21,8 +21,8 @@
   </div>
 
   <div class="detail-btn">
-    <a href="{{ route('item', $product->id) }}" class="btn-update">編集</a>
-    <form action="{{ route('destroy', $product->id) }}" method="POST">
+    <a href="{{ route('item.edit', $product->id) }}" class="btn-update">編集</a>
+    <form action="{{ route('destroy.products', $product->id) }}" method="POST">
       @csrf
       @method('DELETE')
       <button type="submit" class="btn-delete" onclick="return confirm('本当に削除しますか？');">削除する</button>
